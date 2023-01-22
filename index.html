@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock, Paper, Scissors</title>
+    <style>
+      /* CSS styling for the game */
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      button {
+        width: 150px;
+        height: 150px;
+        font-size: 36px;
+        margin: 10px;
+        border-radius: 50%;
+      }
+      #result {
+        margin-top: 50px;
+        font-size: 36px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button id="rock">rock</button>
+      <button id="paper">paper</button>
+      <button id="scissors">scissors</button>
+      <p id="result"></p>
+    </div>
+    <script>
+      // JavaScript logic for the game
+      const rock = document.getElementById("rock");
+      const paper = document.getElementById("paper");
+      const scissors = document.getElementById("scissors");
+      const result = document.getElementById("result");
+      
+      rock.addEventListener("click", playGame);
+      paper.addEventListener("click", playGame);
+      scissors.addEventListener("click", playGame);
+      
+      function playGame(e) {
+        let playerSelection = e.target.id;
+        let computerSelection = Math.random();
+        if (computerSelection < 0.34) {
+          computerSelection = "rock";
+        } else if (computerSelection <= 0.67) {
+          computerSelection = "paper";
+        } else {
+          computerSelection = "scissors";
+        }
+        let gameResult = "";
+        if (playerSelection === computerSelection) {
+          gameResult = "It's a tie!";
+        } else if (playerSelection === "rock" && computerSelection === "scissors") {
+          gameResult = "You win! Rock beats Scissors";
+        } else if (playerSelection === "paper" && computerSelection === "rock") {
+          gameResult = "You win! Paper beats Rock";
+        } else if (playerSelection === "scissors" && computerSelection === "paper") {
+          gameResult = "You win! Scissors beats Paper";
+        } else {
+          gameResult = `You lose! ${computerSelection} beats ${playerSelection}`;
+        }
+        result.textContent = gameResult;
+      }
+    </script>
+  </body>
+</html>
